@@ -29,8 +29,9 @@ fun discriminant(a: Double, b: Double, c: Double) = sqr(b) - 4 * a * c
  *
  * Поиск одного из корней квадратного уравнения
  */
-fun quadraticEquationRoot(a: Double, b: Double, c: Double) =
-        (-b + sqrt(discriminant(a, b, c))) / (2 * a)
+fun quadraticEquationRoot(a: Double, b: Double, c: Double): Double {
+    return (-b + sqrt(discriminant(a, b, c))) / (2 * a)
+}
 
 /**
  * Пример
@@ -48,8 +49,17 @@ fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
  * Пример главной функции
  */
 fun main(args: Array<String>) {
-    val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
-    println("Root product: $x1x2")
+    /*val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
+    println("Root product: $x1x2")*/
+    // val variable = 10;
+    // val result = sqr(x = variable)
+    // var result = 10 % 3;
+    // println("$variable / 3 = $result")
+
+    val result1 = seconds(8,20,35)
+    println("Seconds from start date: $result1")
+    var result2 = lengthInMeters(8, 2, 11)
+    println("8 саженей 2 аршина 11 вершков то $result2 метров")
 }
 
 /**
@@ -58,7 +68,12 @@ fun main(args: Array<String>) {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
+    val hoursSeconds = hours * 3600
+    val minutesSeconds = minutes * 60
+
+    return hoursSeconds + minutesSeconds + seconds
+}
 
 /**
  * Тривиальная
@@ -67,8 +82,26 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
 
+    val arshinsInSagens = convertSagenesToArshins(sagenes)
+    val vershoksInArshins = convertArshinsToVershoks(arshins + arshinsInSagens)
+    val metersInVershoks = convertVershoksToMeters(vershoks + vershoksInArshins)
+
+    return metersInVershoks
+}
+fun convertVershoksToMeters(vershoks: Int): Double {
+
+    return vershoks * 0.04445
+}
+fun convertArshinsToVershoks(arshins: Int): Int {
+
+    return arshins * 16
+}
+fun convertSagenesToArshins(sagenes: Int): Int {
+
+    return sagenes * 3
+}
 /**
  * Тривиальная
  *
