@@ -2,6 +2,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -62,7 +63,26 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+    if (age < 0 || age > 200) return "$age - недопустимый возраст"
+    val word = skloneniya(age, "год", "года", "лет")
+
+    return "$age $word"
+}
+
+fun skloneniya(number: Int, one: String, two: String, three: String): String {
+    val value = abs(number)
+
+    if ((value % 100 >= 11) && (value % 100 <=19)) {
+        return three
+    } else {
+        return when {
+            number % 10 == 1 -> one
+            number % 10 in 2..4 -> two
+            else -> three
+        }
+    }
+}
 
 /**
  * Простая

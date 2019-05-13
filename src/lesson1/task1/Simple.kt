@@ -58,8 +58,12 @@ fun main(args: Array<String>) {
 
     val result1 = seconds(8,20,35)
     println("Seconds from start date: $result1")
-    var result2 = lengthInMeters(8, 2, 11)
+    val result2 = lengthInMeters(8, 2, 11)
     println("8 саженей 2 аршина 11 вершков то $result2 метров")
+    val percent = 10
+    val deposit = 100
+    val result3 = accountInThreeYears(deposit, percent)
+    println("Deposit($deposit) after three years for $percent%: $result3")
 }
 
 /**
@@ -142,7 +146,18 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Сколько денег будет на счету через 3 года (с учётом сложных процентов)?
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
-fun accountInThreeYears(initial: Int, percent: Int): Double = TODO()
+fun accountInThreeYears(initial: Int, percent: Int): Double  {
+    val firstYear = calcYearResult(initial.toDouble(), percent)
+    val secondYear = calcYearResult(firstYear, percent)
+
+    return calcYearResult(secondYear, percent)
+}
+
+fun calcYearResult(summ: Double, percent: Int): Double {
+    return summ + (summ * percent) / 100
+}
+
+
 
 /**
  * Простая

@@ -74,7 +74,11 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int {
+    if(n in 1..2) return 1
+
+    return fib(n-2) + fib(n-1)
+}
 
 /**
  * Простая
@@ -159,7 +163,24 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun main(args: Array<String>) {
+    val res = revert(1234)
+
+    println(res)
+}
+
+fun revert(n: Int): Int {
+    return converter(n, 0)
+}
+
+fun converter(res: Int, rest: Int): Int {
+    val mirrorRest = rest * 10 + res % 10
+    val currentRes = res / 10
+
+    if(res == 0) return mirrorRest
+
+    return converter(currentRes, mirrorRest)
+}
 
 /**
  * Средняя

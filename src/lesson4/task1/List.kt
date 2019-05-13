@@ -3,6 +3,8 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.sqr
+import lesson3.task1.revert
 import kotlin.math.sqrt
 
 /**
@@ -108,6 +110,13 @@ fun isPalindrome(str: String): Boolean {
  */
 fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", postfix = " = ${list.sum()}")
 
+
+fun main(args: Array<String>) {
+    val res = abs(listOf(1.2,2.6,3.1,4.8))
+
+    println(res)
+}
+
 /**
  * Простая
  *
@@ -115,7 +124,19 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * по формуле abs = sqrt(a1^2 + a2^2 + ... + aN^2).
  * Модуль пустого вектора считать равным 0.0.
  */
-fun abs(v: List<Double>): Double = TODO()
+fun abs(v: List<Double>): Double {
+    val listLength = v.size
+    var res = 0.0
+
+    if (listLength > 0) {
+        for (i in 0 until listLength) {
+            res += sqr(v[i])
+        }
+    }
+
+
+    return sqrt(res)
+}
 
 /**
  * Простая
